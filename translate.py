@@ -59,7 +59,8 @@ def main():
             has_same_section = False
 
     # print(extracted_sentences)
-    print(len(extracted_sentences))
+    with open(parsed_file, "w") as text_file:
+        text_file.write(extracted_sentences)
     driver = webdriver.Chrome(service=Service(
         ChromeDriverManager().install()), options=options)
     # driver = webdriver.Chrome(driver_path, options=options)
@@ -72,7 +73,7 @@ def main():
             source_text.clear()
             source_text.send_keys(extracted_sentences)
         else:
-            parsed_length = 100
+            parsed_length = 5000
             source_text.clear()
             source_text.send_keys(extracted_sentences[0:parsed_length])
     time.sleep(5)
@@ -80,7 +81,7 @@ def main():
         by=By.CLASS_NAME, value="VfPpkd-Bz112c-LgbsSe")
     copy_translation.click()
     output_text = pyperclip.paste()
-    print(output_text)
+    # print(output_text)
     
 
 
